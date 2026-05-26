@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;font-weight:500;background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 22px;border:none;border-radius:4px;cursor:pointer;text-decoration:none}
+.btn-sm{padding:7px 16px;font-size:10px}
+.btn-lg{padding:14px 32px;font-size:12px}
+.divider{width:0.5px;height:40px;background:rgba(255,255,255,0.07)}
+</style></head><body>
+<div class="row-label">Buttons</div>
+<div class="group">
+  <button class="btn btn-sm" style="background:#97BF04;color:#0a0a0a">SM · Вступить</button>
+  <button class="btn" style="background:#97BF04;color:#0a0a0a">MD · Присоединиться</button>
+  <button class="btn btn-lg" style="background:#97BF04;color:#0a0a0a">LG · Вступить в 4ch</button>
+</div>
+<div class="group">
+  <button class="btn" style="background:transparent;color:#666;border:0.5px solid rgba(255,255,255,0.07)">Ghost</button>
+  <button class="btn" style="background:transparent;color:#97BF04;border:0.5px solid rgba(151,191,4,0.4)">Outline Brand</button>
+  <button class="btn" style="background:#e53e3e;color:#fff">Danger · Бан</button>
+  <button class="btn" style="background:rgba(255,255,255,0.06);color:#666;border:none">Muted</button>
+</div>
+<div class="group">
+  <button class="btn" style="background:#97BF04;color:#0a0a0a;opacity:0.5;cursor:not-allowed">Disabled</button>
+  <button class="btn" style="background:#6e8e03;color:#0a0a0a">Hover State</button>
+  <div style="display:flex;align-items:center;gap:8px;padding:10px 22px;background:#97BF04;border-radius:4px;cursor:pointer">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#0a0a0a">Icon + Label</span>
+  </div>
+</div>
+</body></html>

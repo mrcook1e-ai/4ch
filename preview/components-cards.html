@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;font-weight:500;background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.row{display:flex;gap:12px}
+.card{background:#111;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:20px;flex:1;display:flex;flex-direction:column;gap:10px}
+.card-title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:#fff;letter-spacing:-0.01em}
+.card-sub{font-size:13px;font-weight:500;color:#666;line-height:1.5}
+.stat-card{background:#111;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:18px 20px;flex:1}
+.stat-eyebrow{font-size:9px;font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#97BF04;margin-bottom:8px}
+.stat-val{font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;color:#fff;letter-spacing:-0.02em}
+.stat-label{font-size:11px;color:#555;font-weight:500;margin-top:4px}
+.brand-card{background:rgba(151,191,4,0.08);border:0.5px solid rgba(151,191,4,0.2);border-radius:8px;padding:20px;flex:1}
+.danger-card{background:rgba(229,62,62,0.08);border:0.5px solid rgba(229,62,62,0.2);border-radius:8px;padding:20px;flex:1}
+</style></head><body>
+<div class="row-label">Cards</div>
+<div class="row">
+  <div class="card">
+    <div class="card-title">Базовая карточка</div>
+    <div class="card-sub">Никаких корпоративных правил. Говори что думаешь — в рамках здравого смысла.</div>
+  </div>
+  <div class="brand-card">
+    <div class="stat-eyebrow">Защита</div>
+    <div class="card-title" style="color:#97BF04">Активна</div>
+    <div class="card-sub" style="color:rgba(151,191,4,0.6)">Enhanced mode · 3 правила</div>
+  </div>
+  <div class="danger-card">
+    <div class="stat-eyebrow" style="color:#e53e3e">Инцидент</div>
+    <div class="card-title" style="color:#e53e3e">Mass Ban</div>
+    <div class="card-sub" style="color:rgba(229,62,62,0.6)">user#1234 · 12 мин назад</div>
+  </div>
+</div>
+<div class="row">
+  <div class="stat-card">
+    <div class="stat-eyebrow">Участников</div>
+    <div class="stat-val">4.2K</div>
+    <div class="stat-label">онлайн сейчас: 847</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-eyebrow">Баланс экономики</div>
+    <div class="stat-val">₴ 2.4M</div>
+    <div class="stat-label">в обращении</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-eyebrow">Снапшот</div>
+    <div class="stat-val">2h</div>
+    <div class="stat-label">назад · 2847 объектов</div>
+  </div>
+  <div class="stat-card" style="background:rgba(255,255,255,0.03)">
+    <div class="stat-eyebrow" style="color:#666">Статус бота</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div style="width:8px;height:8px;border-radius:50%;background:#97BF04"></div><span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:14px;color:#fff">Online</span></div>
+    <div class="stat-label">heartbeat: 1s ago</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;font-family:'Inter',sans-serif;font-weight:500;padding:28px 32px;display:flex;flex-direction:column;gap:12px}
+.group{display:flex;gap:8px;align-items:stretch}
+.chip{flex:1;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.chip-label{font-size:10px;font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.chip-val{font-size:10px;letter-spacing:0.04em}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:500;width:fit-content}
+.row-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#444;font-family:'Unbounded',sans-serif;margin-bottom:-4px}
+</style></head><body>
+
+<div class="row-label">Semantic Colors</div>
+
+<div class="group">
+  <div class="chip" style="background:rgba(151,191,4,0.12);border:0.5px solid rgba(151,191,4,0.25)">
+    <div class="chip-label" style="color:#97BF04">Success</div>
+    <div class="chip-val" style="color:#97BF04">#97BF04</div>
+    <div class="pill" style="background:rgba(151,191,4,0.18);color:#97BF04">Активна</div>
+  </div>
+  <div class="chip" style="background:rgba(229,62,62,0.12);border:0.5px solid rgba(229,62,62,0.28)">
+    <div class="chip-label" style="color:#e53e3e">Danger</div>
+    <div class="chip-val" style="color:#e53e3e">#e53e3e</div>
+    <div class="pill" style="background:rgba(229,62,62,0.15);color:#e53e3e">Бан</div>
+  </div>
+  <div class="chip" style="background:rgba(214,158,46,0.12);border:0.5px solid rgba(214,158,46,0.28)">
+    <div class="chip-label" style="color:#d69e2e">Warning</div>
+    <div class="chip-val" style="color:#d69e2e">#d69e2e</div>
+    <div class="pill" style="background:rgba(214,158,46,0.15);color:#d69e2e">Варн</div>
+  </div>
+  <div class="chip" style="background:rgba(66,153,225,0.12);border:0.5px solid rgba(66,153,225,0.28)">
+    <div class="chip-label" style="color:#4299e1">Info</div>
+    <div class="chip-val" style="color:#4299e1">#4299e1</div>
+    <div class="pill" style="background:rgba(66,153,225,0.15);color:#4299e1">Лог</div>
+  </div>
+  <div class="chip" style="background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.07)">
+    <div class="chip-label" style="color:#666">Muted</div>
+    <div class="chip-val" style="color:#555">rgba(255,255,255,.06)</div>
+    <div class="pill" style="background:rgba(255,255,255,0.06);color:#666">Архив</div>
+  </div>
+</div>
+
+</body></html>

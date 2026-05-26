@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.row{display:flex;gap:12px;align-items:center}
+.r-item{display:flex;flex-direction:column;align-items:center;gap:10px}
+.r-box{background:#111;border:0.5px solid rgba(255,255,255,0.12);width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+.r-label{font-size:9px;font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#444;text-align:center}
+.r-val{font-size:10px;font-family:'Inter',sans-serif;font-weight:500;color:#666;text-align:center}
+.inner{background:#181818;width:44px;height:44px}
+</style></head><body>
+<div class="row-label">Border Radius System</div>
+<div class="row">
+  <div class="r-item">
+    <div class="r-box" style="border-radius:2px"><div class="inner" style="border-radius:2px"></div></div>
+    <div class="r-label">XS</div><div class="r-val">2px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:4px"><div class="inner" style="border-radius:4px"></div></div>
+    <div class="r-label">SM · Buttons</div><div class="r-val">4px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:8px"><div class="inner" style="border-radius:8px"></div></div>
+    <div class="r-label">MD · Cards</div><div class="r-val">8px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:12px"><div class="inner" style="border-radius:12px"></div></div>
+    <div class="r-label">LG · Panels</div><div class="r-val">12px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:16px"><div class="inner" style="border-radius:16px"></div></div>
+    <div class="r-label">XL · iOS Tile</div><div class="r-val">16px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:20px"><div class="inner" style="border-radius:20px"></div></div>
+    <div class="r-label">2XL · Avatar</div><div class="r-val">20px</div>
+  </div>
+  <div class="r-item">
+    <div class="r-box" style="border-radius:999px"><div class="inner" style="border-radius:999px"></div></div>
+    <div class="r-label">Full · Pills</div><div class="r-val">999px</div>
+  </div>
+</div>
+</body></html>

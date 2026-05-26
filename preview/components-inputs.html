@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.row{display:flex;gap:12px;align-items:flex-start}
+.field{display:flex;flex-direction:column;gap:6px;flex:1}
+.field-label{font-size:10px;font-family:'Inter',sans-serif;font-weight:500;color:#555;letter-spacing:0.04em}
+.input{background:#141414;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;color:#f0f0f0;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;outline:none;width:100%}
+.input-focus{border-color:rgba(151,191,4,0.4)}
+.input-error{border-color:rgba(229,62,62,0.4)}
+.input-disabled{opacity:0.4;cursor:not-allowed}
+.helper{font-size:10px;font-family:'Inter',sans-serif;font-weight:500;color:#555}
+.helper-err{color:#e53e3e}
+.select{background:#141414;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;color:#f0f0f0;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;width:100%;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+</style></head><body>
+<div class="row-label">Form Inputs</div>
+<div class="row">
+  <div class="field">
+    <div class="field-label">Default</div>
+    <input class="input" placeholder="Никнейм или ID..." readonly>
+    <span class="helper">Введите пользователя</span>
+  </div>
+  <div class="field">
+    <div class="field-label">Focus</div>
+    <input class="input input-focus" value="username#1234" readonly>
+    <span class="helper">Пользователь найден</span>
+  </div>
+  <div class="field">
+    <div class="field-label">Error</div>
+    <input class="input input-error" value="invalid_user" readonly>
+    <span class="helper helper-err">Пользователь не найден</span>
+  </div>
+  <div class="field">
+    <div class="field-label">Disabled</div>
+    <input class="input input-disabled" placeholder="Недоступно" disabled>
+    <span class="helper">Нет доступа</span>
+  </div>
+</div>
+<div class="row">
+  <div class="field">
+    <div class="field-label">Select / Dropdown</div>
+    <select class="select">
+      <option>Наказание: Бан</option>
+      <option>Наказание: Кик</option>
+      <option>Наказание: Мут</option>
+      <option>Только лог</option>
+    </select>
+  </div>
+  <div class="field">
+    <div class="field-label">Number Input</div>
+    <input class="input" type="number" value="5" readonly style="width:100%">
+    <span class="helper">Порог: кол-во действий</span>
+  </div>
+  <div class="field">
+    <div class="field-label">Search</div>
+    <div style="position:relative">
+      <input class="input" placeholder="Поиск..." readonly style="padding-left:36px">
+      <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+  </div>
+</div>
+</body></html>

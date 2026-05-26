@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:20px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.scale{display:flex;align-items:flex-end;gap:6px}
+.block{background:#97BF04;border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:4px;gap:2px}
+.block-label{font-size:8px;font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:0.06em;color:#0a0a0a;transform:rotate(-90deg) translateX(6px);white-space:nowrap;opacity:0.7}
+.block-val{font-size:8px;font-family:'Inter',sans-serif;font-weight:500;color:#0a0a0a;opacity:0.6;margin-bottom:2px}
+.tokens{display:flex;gap:8px;flex-wrap:wrap}
+.token{background:#111;border:0.5px solid rgba(255,255,255,0.07);border-radius:4px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.tok-box{background:#97BF04;border-radius:2px;height:4px}
+.tok-name{font-size:9px;font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#555}
+.tok-px{font-size:10px;font-family:'Inter',sans-serif;font-weight:500;color:#f0f0f0}
+</style></head><body>
+<div class="row-label">Spacing Scale — 4px base unit</div>
+<div class="scale">
+  <div class="block" style="width:18px;height:4px"><div class="block-val">4</div></div>
+  <div class="block" style="width:18px;height:8px"><div class="block-val">8</div></div>
+  <div class="block" style="width:18px;height:12px"><div class="block-val">12</div></div>
+  <div class="block" style="width:18px;height:16px"><div class="block-val">16</div></div>
+  <div class="block" style="width:18px;height:20px"><div class="block-val">20</div></div>
+  <div class="block" style="width:18px;height:24px"><div class="block-val">24</div></div>
+  <div class="block" style="width:18px;height:32px"><div class="block-val">32</div></div>
+  <div class="block" style="width:18px;height:40px"><div class="block-val">40</div></div>
+  <div class="block" style="width:18px;height:48px"><div class="block-val">48</div></div>
+  <div class="block" style="width:18px;height:64px"><div class="block-val">64</div></div>
+  <div class="block" style="width:18px;height:80px"><div class="block-val">80</div></div>
+</div>
+<div class="tokens">
+  <div class="token"><div class="tok-box" style="width:4px"></div><span class="tok-name">Space 1</span><span class="tok-px">4px</span></div>
+  <div class="token"><div class="tok-box" style="width:8px"></div><span class="tok-name">Space 2</span><span class="tok-px">8px</span></div>
+  <div class="token"><div class="tok-box" style="width:12px"></div><span class="tok-name">Space 3</span><span class="tok-px">12px</span></div>
+  <div class="token"><div class="tok-box" style="width:16px"></div><span class="tok-name">Space 4</span><span class="tok-px">16px</span></div>
+  <div class="token"><div class="tok-box" style="width:24px"></div><span class="tok-name">Space 6</span><span class="tok-px">24px</span></div>
+  <div class="token"><div class="tok-box" style="width:32px"></div><span class="tok-name">Space 8</span><span class="tok-px">32px</span></div>
+  <div class="token"><div class="tok-box" style="width:48px"></div><span class="tok-name">Space 12</span><span class="tok-px">48px</span></div>
+</div>
+</body></html>

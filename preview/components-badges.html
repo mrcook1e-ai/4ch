@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.row-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#333;font-family:'Unbounded',sans-serif;font-weight:700}
+.group{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-family:'Inter',sans-serif;font-size:11px;font-weight:500}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.role{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:4px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500}
+.role-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+</style></head><body>
+<div class="row-label">Status Badges</div>
+<div class="group">
+  <span class="badge" style="background:rgba(151,191,4,0.18);color:#97BF04"><div class="dot" style="background:#97BF04"></div>hot</span>
+  <span class="badge" style="background:rgba(151,191,4,0.18);color:#97BF04"><div class="dot" style="background:#97BF04;animation:pulse 1.5s ease infinite"></div>live</span>
+  <span class="badge" style="background:rgba(66,153,225,0.15);color:#4299e1"><div class="dot" style="background:#4299e1"></div>онлайн</span>
+  <span class="badge" style="background:rgba(229,62,62,0.15);color:#e53e3e"><div class="dot" style="background:#e53e3e"></div>бан</span>
+  <span class="badge" style="background:rgba(214,158,46,0.15);color:#d69e2e"><div class="dot" style="background:#d69e2e"></div>варн</span>
+  <span class="badge" style="background:rgba(255,255,255,0.06);color:#666"><div class="dot" style="background:#666"></div>офлайн</span>
+  <span class="badge" style="background:rgba(151,191,4,0.18);color:#97BF04">Активна</span>
+  <span class="badge" style="background:rgba(229,62,62,0.15);color:#e53e3e">Выкл</span>
+  <span class="badge" style="background:rgba(255,255,255,0.06);color:#666">Архив</span>
+</div>
+
+<div class="row-label">Role Chips</div>
+<div class="group">
+  <span class="role" style="background:rgba(229,62,62,0.12);color:#e53e3e;border:0.5px solid rgba(229,62,62,0.2)"><div class="role-dot" style="background:#e53e3e"></div>Admin</span>
+  <span class="role" style="background:rgba(214,158,46,0.12);color:#d69e2e;border:0.5px solid rgba(214,158,46,0.2)"><div class="role-dot" style="background:#d69e2e"></div>Security Admin</span>
+  <span class="role" style="background:rgba(151,191,4,0.12);color:#97BF04;border:0.5px solid rgba(151,191,4,0.2)"><div class="role-dot" style="background:#97BF04"></div>Economy Admin</span>
+  <span class="role" style="background:rgba(66,153,225,0.12);color:#4299e1;border:0.5px solid rgba(66,153,225,0.2)"><div class="role-dot" style="background:#4299e1"></div>Moderator</span>
+  <span class="role" style="background:rgba(255,255,255,0.06);color:#888;border:0.5px solid rgba(255,255,255,0.07)"><div class="role-dot" style="background:#888"></div>Support</span>
+  <span class="role" style="background:rgba(160,120,255,0.12);color:#a07fff;border:0.5px solid rgba(160,120,255,0.2)"><div class="role-dot" style="background:#a07fff"></div>Curator</span>
+</div>
+
+<style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}</style>
+</body></html>

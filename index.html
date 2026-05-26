@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4ch — Свои среди своих</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand:       #97BF04;
+  --brand-glow:  rgba(151,191,4,0.15);
+  --bg:          #0a0a0a;
+  --bg2:         #111111;
+  --bg3:         #181818;
+  --text:        #f0f0f0;
+  --muted:       #666;
+  --dim:         #3a3a3a;
+  --border:      rgba(255,255,255,0.07);
+  --border-md:   rgba(255,255,255,0.12);
+  --danger:      #e53e3e;
+  --warn:        #d69e2e;
+  --px:          96px;
+  --py:          96px;
+  --max:         1440px;
+  --r:           24px;
+  --r-sm:        16px;
+  --r-btn:       10px;
+  --r-code:      7px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── LAYOUT ──────────────────────────────────────────── */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--px);
+  padding-right: var(--px);
+}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo svg { width: 26px; height: 26px; display: block; flex-shrink: 0; }
+.nav-wordmark {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 0.04em; color: var(--text);
+}
+.nav-links {
+  display: flex; align-items: center;
+  gap: 2px; list-style: none; flex: 1;
+  justify-content: center;
+}
+.nav-links a {
+  display: block; color: var(--muted);
+  text-decoration: none; font-size: 13px;
+  font-weight: 500; padding: 7px 14px;
+  border-radius: var(--r-btn);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-cta {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--brand); color: #0a0a0a;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 20px; border: none;
+  border-radius: var(--r-btn);
+  cursor: pointer; text-decoration: none;
+  transition: opacity 0.2s; flex-shrink: 0;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ─── HERO ────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
+  padding: 120px var(--px) 80px;
+  position: relative;
+}
+.hero-watermark {
+  position: absolute; right: -5vw; top: 50%;
+  transform: translateY(-50%);
+  width: 50vw; max-width: 640px;
+  opacity: 0.055; pointer-events: none; z-index: 0;
+}
+.hero > *:not(.hero-watermark) { position: relative; z-index: 1; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brand); display: block; margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: clamp(52px, 8vw, 104px);
+  line-height: 0.95; letter-spacing: -0.02em; color: #fff;
+}
+.hero-title .accent { color: var(--brand); display: block; }
+.hero-sub {
+  margin-top: 32px; font-size: 16px; font-weight: 300;
+  color: var(--muted); max-width: 460px; line-height: 1.7;
+}
+.hero-actions {
+  margin-top: 44px; display: flex; gap: 14px; align-items: center;
+}
+.btn-primary {
+  background: var(--brand); color: #0a0a0a;
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 15px 36px; border: none; border-radius: var(--r-btn);
+  cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  background: transparent; color: var(--muted); font-size: 13px; font-weight: 400;
+  padding: 15px 24px; border: 0.5px solid var(--border); border-radius: var(--r-btn);
+  cursor: pointer; text-decoration: none; transition: color 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--border-md); }
+
+.hero-stats { margin-top: 72px; display: flex; gap: 48px; }
+.stat-num {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 26px; color: #fff; letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 10px; color: var(--muted); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-top: 4px; font-weight: 400;
+}
+
+/* ─── MARQUEE ─────────────────────────────────────────── */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 17px 0; background: var(--bg2);
+}
+.marquee-track {
+  display: flex; gap: 48px; white-space: nowrap;
+  animation: marquee 24s linear infinite;
+}
+.marquee-item {
+  font-family: 'Unbounded', sans-serif; font-weight: 400;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.marquee-sep { color: var(--brand); margin: 0 14px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ─── SECTION SHARED ──────────────────────────────────── */
+.section-tag {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--brand);
+  display: block; margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: clamp(26px, 4vw, 46px); color: #fff;
+  letter-spacing: -0.02em; line-height: 1.05;
+  margin-bottom: 44px;
+}
+section { border-top: 0.5px solid var(--border); }
+section.no-border { border-top: none; }
+
+/* ─── FEATURES STRIP ─────────────────────────────────── */
+.features-strip { border-top: none; padding: var(--py) var(--px); }
+.strip-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  background: var(--bg2); border: 0.5px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+}
+.strip-item {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 30px 32px; transition: background 0.15s;
+}
+.strip-item:hover { background: var(--bg3); }
+.strip-num {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: 10px; letter-spacing: 0.14em; color: var(--brand);
+  padding-top: 2px; flex-shrink: 0;
+}
+.strip-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 13px; color: #fff; letter-spacing: -0.01em; margin-bottom: 6px;
+}
+.strip-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.55; }
+.strip-div { width: 0.5px; background: var(--border); height: 60px; }
+
+/* ─── LIVE FEED ───────────────────────────────────────── */
+.live-section { padding: var(--py) var(--px); }
+.live-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+}
+.live-col { background: var(--bg2); padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+.live-col-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.live-col-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.live-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-family: 'Unbounded', sans-serif;
+  font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--brand); background: var(--brand-glow);
+  padding: 3px 8px; border-radius: 999px;
+}
+.live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brand); animation: pulse 1.4s ease infinite; }
+
+.v-card {
+  background: var(--bg3); border-radius: var(--r-sm);
+  padding: 11px 13px; display: flex; align-items: center; gap: 9px;
+  transition: background 0.12s;
+}
+.v-card:hover { background: #1e1e1e; }
+.v-card.speaking { border: 0.5px solid rgba(151,191,4,0.4); }
+.v-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.v-name { font-size: 13px; color: var(--text); font-weight: 500; flex: 1; }
+.v-ch { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+.ev-card {
+  background: var(--bg3); border-radius: var(--r-sm);
+  padding: 13px; transition: background 0.12s;
+}
+.ev-card:hover { background: #1e1e1e; }
+.ev-type {
+  font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 5px;
+}
+.ev-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+.ev-meta { font-size: 11px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.pill-live { font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--brand-glow); color: var(--brand); padding: 2px 8px; border-radius: 999px; }
+.pill-soon { font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(214,158,46,0.15); color: var(--warn); padding: 2px 8px; border-radius: 999px; }
+
+.gm-card {
+  background: var(--bg3); border-radius: var(--r-sm);
+  padding: 11px 13px; display: flex; align-items: center; gap: 10px;
+  transition: background 0.12s;
+}
+.gm-card:hover { background: #1e1e1e; }
+.gm-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.gm-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.gm-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.gm-slots { font-size: 10px; font-family: 'Unbounded', sans-serif; font-weight: 700; color: var(--brand); margin-left: auto; flex-shrink: 0; }
+
+/* ─── CHANNELS ────────────────────────────────────────── */
+.channels-section {
+  padding: var(--py) var(--px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.ch-list {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--border);
+  border: 0.5px solid var(--border); border-radius: var(--r); overflow: hidden;
+}
+.ch-item {
+  background: var(--bg2); padding: 16px 22px;
+  display: flex; align-items: center; gap: 12px;
+  transition: background 0.12s;
+}
+.ch-item:hover { background: var(--bg3); }
+.ch-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+.ch-dot.on { background: var(--brand); animation: pulse 2s ease infinite; }
+.ch-name { font-size: 13px; color: var(--text); font-weight: 400; flex: 1; }
+.ch-count { font-size: 11px; color: var(--dim); }
+.ch-badge {
+  font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  background: var(--brand-glow); color: var(--brand);
+  padding: 2px 8px; border-radius: 999px; letter-spacing: 0.06em;
+}
+
+/* ─── ECONOMY ─────────────────────────────────────────── */
+.economy-section { padding: var(--py) var(--px); }
+.eco-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border); border-radius: var(--r);
+  overflow: hidden; margin-bottom: 20px;
+}
+.eco-card { background: var(--bg2); padding: 28px 24px; transition: background 0.12s; }
+.eco-card:hover { background: var(--bg3); }
+.eco-label {
+  font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand); margin-bottom: 10px;
+}
+.eco-num {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 28px; color: #fff; letter-spacing: -0.02em; line-height: 1;
+}
+.eco-sub { font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 400; }
+.eco-bar { height: 2px; background: var(--border); border-radius: 1px; margin-top: 14px; overflow: hidden; }
+.eco-fill { height: 100%; background: var(--brand); border-radius: 1px; }
+
+.tx-feed {
+  background: var(--bg2); border: 0.5px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+}
+.tx-hd {
+  padding: 12px 18px; border-bottom: 0.5px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.tx-hd-title {
+  font-size: 10px; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.tx-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 18px; border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  transition: background 0.1s;
+}
+.tx-row:hover { background: rgba(255,255,255,0.02); }
+.tx-row:last-child { border-bottom: none; }
+.tx-av {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; flex-shrink: 0;
+}
+.tx-user { font-size: 13px; color: var(--text); font-weight: 500; flex: 1; }
+.tx-reason { font-size: 11px; color: var(--muted); }
+.tx-amount { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.01em; flex-shrink: 0; }
+.tx-time { font-size: 10px; color: var(--dim); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; min-width: 80px; text-align: right; }
+
+/* ─── BYPASS ──────────────────────────────────────────── */
+.bypass-section { padding: var(--py) var(--px); }
+.bypass-card {
+  background: var(--bg2); border: 0.5px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+}
+.bypass-top {
+  padding: 36px 40px;
+  display: grid; grid-template-columns: 1fr 300px;
+  gap: 48px; align-items: start;
+}
+.bypass-h {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: clamp(20px, 2.5vw, 28px); color: #fff;
+  letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px;
+}
+.bypass-desc { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.bypass-warn {
+  margin-top: 18px; display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(214,158,46,0.08); border: 0.5px solid rgba(214,158,46,0.2);
+  border-radius: var(--r-code); padding: 11px 14px;
+}
+.bypass-warn-text { font-size: 12px; color: var(--warn); font-weight: 500; line-height: 1.5; }
+.btn-dl {
+  display: flex; align-items: center; gap: 9px; width: 100%; justify-content: center;
+  background: var(--brand); color: #0a0a0a;
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 14px 20px; border-radius: var(--r-btn); border: none;
+  cursor: pointer; text-decoration: none; transition: opacity 0.2s; margin-bottom: 10px;
+}
+.btn-dl:hover { opacity: 0.85; }
+.btn-gh {
+  display: flex; align-items: center; gap: 7px; width: 100%; justify-content: center;
+  background: transparent; color: var(--muted); font-size: 12px; font-weight: 500;
+  padding: 9px 20px; border-radius: var(--r-btn);
+  border: 0.5px solid var(--border); cursor: pointer;
+  text-decoration: none; transition: color 0.2s, border-color 0.2s;
+}
+.btn-gh:hover { color: var(--text); border-color: var(--border-md); }
+.bypass-authors {
+  margin-top: 14px; padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid var(--border); border-radius: var(--r-sm);
+}
+.bypass-authors-label {
+  font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px;
+}
+.bypass-authors p { font-size: 12px; color: var(--muted); font-weight: 400; line-height: 1.7; }
+.bypass-authors a { color: var(--brand); text-decoration: none; }
+
+.bypass-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-top: 0.5px solid var(--border);
+}
+.bypass-step { padding: 26px 26px 30px; border-right: 0.5px solid var(--border); }
+.bypass-step:last-child { border-right: none; }
+.step-n {
+  font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 10px;
+  color: var(--brand); letter-spacing: 0.1em; margin-bottom: 12px;
+}
+.step-h {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 12px; color: #fff; margin-bottom: 8px; line-height: 1.3;
+}
+.step-p { font-size: 12px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+.step-code {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--brand);
+  background: rgba(151,191,4,0.08); border: 0.5px solid rgba(151,191,4,0.2);
+  border-radius: var(--r-code); padding: 6px 11px;
+  margin-top: 10px; display: block; line-height: 1.5; word-break: break-all;
+}
+
+/* ─── RULES ───────────────────────────────────────────── */
+.rules-section { padding: var(--py) var(--px); }
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.rules-col {
+  background: var(--bg2); border: 0.5px solid var(--border);
+  border-radius: var(--r); padding: 26px 28px;
+}
+.rules-col-h {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 7px;
+}
+.rules-col-h.red { color: var(--danger); }
+.rules-col-h.yellow { color: var(--brand); }
+.rule-row {
+  display: flex; gap: 10px; padding: 8px 0;
+  border-bottom: 0.5px solid rgba(255,255,255,0.05); align-items: flex-start;
+}
+.rule-row:last-child { border-bottom: none; }
+.rule-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.rule-text { font-size: 12px; color: var(--muted); font-weight: 400; line-height: 1.5; flex: 1; }
+.rule-badge { font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--dim); display: block; margin-top: 2px; }
+.rules-nv {
+  margin-top: 20px; background: var(--bg2);
+  border: 0.5px solid var(--border); border-radius: var(--r); padding: 22px 26px;
+}
+.rules-nv-h {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 12px;
+}
+.rules-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.rules-tag {
+  font-size: 12px; color: var(--muted);
+  background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-btn); padding: 5px 12px; font-weight: 400;
+}
+
+/* ─── CTA ─────────────────────────────────────────────── */
+.cta-section { border-top: none; padding: 0 var(--px) var(--py); }
+.cta-card {
+  background: var(--brand); border-radius: var(--r); overflow: hidden;
+  display: grid; grid-template-columns: 1fr 300px;
+  align-items: stretch; min-height: 300px;
+}
+.cta-left { padding: 60px 56px; display: flex; flex-direction: column; justify-content: center; }
+.cta-h {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px); color: #0a0a0a;
+  letter-spacing: -0.03em; line-height: 0.93; margin-bottom: 18px;
+}
+.cta-sub {
+  font-size: 14px; color: rgba(0,0,0,0.5); font-weight: 400;
+  margin-bottom: 30px; max-width: 300px; line-height: 1.65;
+}
+.btn-cta {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #0a0a0a; color: var(--brand);
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 14px 28px; border-radius: var(--r-btn);
+  text-decoration: none; transition: opacity 0.2s; width: fit-content;
+}
+.btn-cta:hover { opacity: 0.8; }
+.cta-logo {
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.1); padding: 40px;
+}
+.cta-logo svg { opacity: 0.15; }
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+footer {
+  border-top: 0.5px solid var(--border);
+  padding: 28px var(--px);
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 9px; text-decoration: none;
+}
+.footer-logo svg { width: 18px; height: 18px; display: block; flex-shrink: 0; }
+.footer-name {
+  font-family: 'Unbounded', sans-serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.08em; color: var(--dim);
+}
+.footer-right {
+  display: flex; gap: 24px; align-items: center;
+  font-size: 12px; color: var(--dim); font-weight: 300;
+}
+.footer-right a { color: var(--dim); text-decoration: none; transition: color 0.15s; }
+.footer-right a:hover { color: var(--muted); }
+
+/* ─── MAX-WIDTH ON SECTIONS ───────────────────────────── */
+.hero, .features-strip, .live-section, .channels-section,
+.economy-section, .bypass-section, .rules-section, .cta-section {
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <svg viewBox="0 0 645 645" fill="none"><path d="M537.862 341.045C658.99 341.045 686.541 510.814 571.63 549.119C561.002 552.662 552.662 561.001 549.119 571.629C510.815 686.541 341.042 658.99 341.042 537.862V410.775C341.042 400.24 353.31 394.468 361.426 401.184L422.566 451.775C441.962 467.824 467.824 441.961 451.775 422.566L401.191 361.43C394.475 353.314 400.248 341.045 410.782 341.045H537.862Z" fill="#97BF04"/><path d="M192.533 422.565C176.485 441.961 202.347 467.823 221.742 451.775L283.311 400.83C291.427 394.115 303.696 399.887 303.696 410.421V537.862C303.696 658.99 133.927 686.541 95.6224 571.629C92.0797 561.001 83.7399 552.662 73.1118 549.119C-41.8 510.814 -14.2485 341.041 106.88 341.041H233.53C244.064 341.041 249.837 353.31 243.121 361.426L192.533 422.565Z" fill="#97BF04"/><path d="M341.042 106.879C341.042 -14.249 510.815 -41.8005 549.119 73.1114C552.662 83.7394 561.001 92.0792 571.63 95.6219C686.541 133.926 658.99 303.695 537.862 303.695H410.422C399.887 303.695 394.115 291.427 400.83 283.311L451.775 221.742C467.823 202.346 441.961 176.484 422.566 192.533L361.426 243.121C353.31 249.836 341.042 244.064 341.042 233.53V106.879Z" fill="#97BF04"/><path d="M95.6219 73.1113C133.926 -41.8004 303.695 -14.249 303.695 106.879V233.883C303.695 244.417 291.427 250.189 283.311 243.474L221.742 192.533C202.346 176.485 176.485 202.346 192.533 221.742L243.481 283.315C250.196 291.431 244.424 303.699 233.89 303.699H106.879C-14.249 303.699 -41.8005 133.926 73.1114 95.6218C83.7394 92.0791 92.0792 83.7393 95.6219 73.1113Z" fill="#97BF04"/></svg>
+      <span class="nav-wordmark">4ch™</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#live">Сейчас</a></li>
+      <li><a href="#economy">Экономика</a></li>
+      <li><a href="#bypass">Обход</a></li>
+      <li><a href="#rules">Правила</a></li>
+    </ul>
+    <a href="http://discord.gg/4ch" class="nav-cta">Вступить</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero no-border">
+  <svg class="hero-watermark" viewBox="0 0 645 645" fill="none"><path d="M537.862 341.045C658.99 341.045 686.541 510.814 571.63 549.119C561.002 552.662 552.662 561.001 549.119 571.629C510.815 686.541 341.042 658.99 341.042 537.862V410.775C341.042 400.24 353.31 394.468 361.426 401.184L422.566 451.775C441.962 467.824 467.824 441.961 451.775 422.566L401.191 361.43C394.475 353.314 400.248 341.045 410.782 341.045H537.862Z" fill="#97BF04"/><path d="M192.533 422.565C176.485 441.961 202.347 467.823 221.742 451.775L283.311 400.83C291.427 394.115 303.696 399.887 303.696 410.421V537.862C303.696 658.99 133.927 686.541 95.6224 571.629C92.0797 561.001 83.7399 552.662 73.1118 549.119C-41.8 510.814 -14.2485 341.041 106.88 341.041H233.53C244.064 341.041 249.837 353.31 243.121 361.426L192.533 422.565Z" fill="#97BF04"/><path d="M341.042 106.879C341.042 -14.249 510.815 -41.8005 549.119 73.1114C552.662 83.7394 561.001 92.0792 571.63 95.6219C686.541 133.926 658.99 303.695 537.862 303.695H410.422C399.887 303.695 394.115 291.427 400.83 283.311L451.775 221.742C467.823 202.346 441.961 176.484 422.566 192.533L361.426 243.121C353.31 249.836 341.042 244.064 341.042 233.53V106.879Z" fill="#97BF04"/><path d="M95.6219 73.1113C133.926 -41.8004 303.695 -14.249 303.695 106.879V233.883C303.695 244.417 291.427 250.189 283.311 243.474L221.742 192.533C202.346 176.485 176.485 202.346 192.533 221.742L243.481 283.315C250.196 291.431 244.424 303.699 233.89 303.699H106.879C-14.249 303.699 -41.8005 133.926 73.1114 95.6218C83.7394 92.0791 92.0792 83.7393 95.6219 73.1113Z" fill="#97BF04"/></svg>
+  <span class="eyebrow">Discord Community</span>
+  <h1 class="hero-title">
+    Свои<br>среди
+    <span class="accent">своих</span>
+  </h1>
+  <p class="hero-sub">Тихое место для тех, кто думает нестандартно. Мемы, обсуждения, анонимность — в духе старого интернета.</p>
+  <div class="hero-actions">
+    <a href="http://discord.gg/4ch" class="btn-primary">Присоединиться</a>
+    <a href="#bypass" class="btn-ghost">Не открывается Discord?</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">4.2K</div><div class="stat-label">Участников</div></div>
+    <div><div class="stat-num">847</div><div class="stat-label">Онлайн сейчас</div></div>
+    <div><div class="stat-num">24/7</div><div class="stat-label">Войсы</div></div>
+    <div><div class="stat-num">₴2.4M</div><div class="stat-label">В обращении</div></div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ───────────────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Анонимность<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Свобода слова<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Мемы<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Дискуссии<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Старый интернет<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Технологии<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">4ch<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Культура<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Ивенты<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Анонимность<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Свобода слова<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Мемы<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Дискуссии<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Старый интернет<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Технологии<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">4ch<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Культура<span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Ивенты<span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ── FEATURES STRIP ────────────────────────────────────── -->
+<section class="features-strip no-border">
+  <div class="strip-grid">
+    <div class="strip-item">
+      <span class="strip-num">01</span>
+      <div>
+        <div class="strip-title">Свободный треп</div>
+        <div class="strip-desc">Без корпоративных регламентов — говори что думаешь</div>
+      </div>
+    </div>
+    <div class="strip-div"></div>
+    <div class="strip-item">
+      <span class="strip-num">02</span>
+      <div>
+        <div class="strip-title">Роли и доступ</div>
+        <div class="strip-desc">Чем активнее — тем шире возможности. Без бюрократии</div>
+      </div>
+    </div>
+    <div class="strip-div"></div>
+    <div class="strip-item">
+      <span class="strip-num">03</span>
+      <div>
+        <div class="strip-title">Ивенты 24/7</div>
+        <div class="strip-desc">Войсы, турниры, кино, розыгрыши — сообщество живёт</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIVE FEED ─────────────────────────────────────────── -->
+<section class="live-section" id="live">
+  <span class="section-tag">Прямо сейчас</span>
+  <h2 class="section-title">Сервер не спит</h2>
+  <div class="live-grid">
+    <!-- Voice -->
+    <div class="live-col">
+      <div class="live-col-hd">
+        <span class="live-col-title">Войс</span>
+        <span class="live-pill"><span class="live-dot"></span>live</span>
+      </div>
+      <div class="v-card speaking">
+        <div class="v-avatar">🦊</div>
+        <div><div class="v-name">Владелец</div><div class="v-ch"><i class="ti ti-volume" style="font-size:10px;margin-right:3px"></i>лобби · говорит</div></div>
+      </div>
+      <div class="v-card">
+        <div class="v-avatar">🐺</div>
+        <div><div class="v-name">nerd#3312</div><div class="v-ch"><i class="ti ti-volume" style="font-size:10px;margin-right:3px"></i>лобби</div></div>
+        <i class="ti ti-microphone-off" style="font-size:13px;color:#444"></i>
+      </div>
+      <div class="v-card">
+        <div class="v-avatar">🐻</div>
+        <div><div class="v-name">anon#7777</div><div class="v-ch"><i class="ti ti-volume" style="font-size:10px;margin-right:3px"></i>gaming</div></div>
+      </div>
+      <div class="v-card">
+        <div class="v-avatar">🐱</div>
+        <div><div class="v-name">anon#5555</div><div class="v-ch"><i class="ti ti-volume" style="font-size:10px;margin-right:3px"></i>gaming</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--dim);padding:4px 0">+ ещё 8 человек в войсах</div>
+    </div>
+    <!-- Events -->
+    <div class="live-col">
+      <div class="live-col-hd">
+        <span class="live-col-title">Ивенты</span>
+      </div>
+      <div class="ev-card">
+        <div class="ev-type">Кино-вечер</div>
+        <div class="ev-title">Смотрим «Реквием по мечте»</div>
+        <div class="ev-meta"><span><i class="ti ti-volume" style="font-size:10px;margin-right:3px"></i>кино-лобби · 14 чел.</span><span class="pill-live">идёт</span></div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-type">Трибуна</div>
+        <div class="ev-title">Пятничный треп — без темы</div>
+        <div class="ev-meta"><span><i class="ti ti-clock" style="font-size:10px;margin-right:3px"></i>лобби · 20:00</span><span class="pill-soon">через 40 мин</span></div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-type">Турнир</div>
+        <div class="ev-title">CS2 — клоз 5×5, bo3</div>
+        <div class="ev-meta"><span><i class="ti ti-calendar" style="font-size:10px;margin-right:3px"></i>Завтра, 19:00</span><span class="pill-soon">открыт набор</span></div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-type">Ивент</div>
+        <div class="ev-title">Розыгрыш ₴5 000 за активность</div>
+        <div class="ev-meta"><span>Завершается 31 мая</span><span class="pill-live">активен</span></div>
+      </div>
+    </div>
+    <!-- Games -->
+    <div class="live-col">
+      <div class="live-col-hd">
+        <span class="live-col-title">Игры</span>
+        <span class="live-pill"><span class="live-dot"></span>ищут</span>
+      </div>
+      <div class="gm-card"><div class="gm-icon" style="background:rgba(229,62,62,0.12)">🎯</div><div><div class="gm-title">CS2</div><div class="gm-sub">Клоз · Premier</div></div><div class="gm-slots">3/10</div></div>
+      <div class="gm-card"><div class="gm-icon" style="background:rgba(66,153,225,0.12)">🌍</div><div><div class="gm-title">Dota 2</div><div class="gm-sub">Трибуна · Any</div></div><div class="gm-slots">4/5</div></div>
+      <div class="gm-card"><div class="gm-icon" style="background:rgba(160,120,255,0.12)">🃏</div><div><div class="gm-title">Hearthstone</div><div class="gm-sub">Зрители</div></div><div class="gm-slots">2/—</div></div>
+      <div class="gm-card"><div class="gm-icon" style="background:rgba(214,158,46,0.12)">🏎</div><div><div class="gm-title">Forza Horizon 5</div><div class="gm-sub">Трибуна</div></div><div class="gm-slots">6/—</div></div>
+      <div class="gm-card"><div class="gm-icon" style="background:rgba(151,191,4,0.10)">⚔️</div><div><div class="gm-title">Baldur's Gate 3</div><div class="gm-sub">Клоз · co-op</div></div><div class="gm-slots">2/4</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHANNELS ───────────────────────────────────────────── -->
+<section class="channels-section">
+  <div>
+    <span class="section-tag">Каналы</span>
+    <h2 class="section-title">Найди<br>своё место</h2>
+    <p style="font-size:15px;color:var(--muted);font-weight:300;line-height:1.7;max-width:360px;">
+      Каждый раздел — отдельный мир. От политики до аниме, от кода до изоленты.
+    </p>
+  </div>
+  <div class="ch-list">
+    <div class="ch-item"><div class="ch-dot on"></div><span class="ch-name"># general</span><span class="ch-count">1 247 сообщений</span><span class="ch-badge">hot</span></div>
+    <div class="ch-item"><div class="ch-dot on"></div><span class="ch-name"># мемы</span><span class="ch-count">4.2K сообщений</span><span class="ch-badge">hot</span></div>
+    <div class="ch-item"><div class="ch-dot"></div><span class="ch-name"># политика</span><span class="ch-count">856 сообщений</span></div>
+    <div class="ch-item"><div class="ch-dot"></div><span class="ch-name"># технологии</span><span class="ch-count">612 сообщений</span></div>
+    <div class="ch-item"><div class="ch-dot on"></div><span class="ch-name"># аниме</span><span class="ch-count">2.1K сообщений</span><span class="ch-badge">live</span></div>
+    <div class="ch-item"><div class="ch-dot on"></div><span class="ch-name"># игры</span><span class="ch-count">334 сообщений</span></div>
+    <div class="ch-item"><div class="ch-dot"></div><span class="ch-name"># музыка</span><span class="ch-count">211 сообщений</span></div>
+    <div class="ch-item"><div class="ch-dot on"></div><span class="ch-name"><i class="ti ti-volume" style="font-size:12px;margin-right:4px"></i>лобби</span><span class="ch-count">12 человек</span><span class="ch-badge">live</span></div>
+  </div>
+</section>
+
+<!-- ── ECONOMY ────────────────────────────────────────────── -->
+<section class="economy-section" id="economy">
+  <span class="section-tag">Экономика сервера</span>
+  <h2 class="section-title">Живая валюта</h2>
+  <div class="eco-grid">
+    <div class="eco-card"><div class="eco-label">В обращении</div><div class="eco-num">₴ 2.4M</div><div class="eco-sub">суммарный баланс участников</div><div class="eco-bar"><div class="eco-fill" style="width:78%"></div></div></div>
+    <div class="eco-card"><div class="eco-label">Транзакций за 7 дней</div><div class="eco-num">1 284</div><div class="eco-sub">войс, активность, ивенты</div><div class="eco-bar"><div class="eco-fill" style="width:54%"></div></div></div>
+    <div class="eco-card"><div class="eco-label">Топ баланс</div><div class="eco-num">₴ 15.4K</div><div class="eco-sub">у одного участника</div><div class="eco-bar"><div class="eco-fill" style="width:32%"></div></div></div>
+    <div class="eco-card"><div class="eco-label">Выдано за ивенты</div><div class="eco-num">₴ 84K</div><div class="eco-sub">за всё время сервера</div><div class="eco-bar"><div class="eco-fill" style="width:91%"></div></div></div>
+  </div>
+  <div class="tx-feed">
+    <div class="tx-hd"><div class="live-dot"></div><span class="tx-hd-title">Последние транзакции</span></div>
+    <div class="tx-row"><div class="tx-av">🦄</div><div class="tx-user">nerd#3312</div><div class="tx-reason">Voice bonus · 60 мин</div><div class="tx-amount" style="color:var(--brand)">+120 ₴</div><div class="tx-time">только что</div></div>
+    <div class="tx-row"><div class="tx-av">🐻</div><div class="tx-user">anon#7777</div><div class="tx-reason">Daily reward</div><div class="tx-amount" style="color:var(--brand)">+100 ₴</div><div class="tx-time">3 мин назад</div></div>
+    <div class="tx-row"><div class="tx-av">🦊</div><div class="tx-user">anon#5555</div><div class="tx-reason">Ивент — кино-вечер</div><div class="tx-amount" style="color:var(--brand)">+500 ₴</div><div class="tx-time">12 мин назад</div></div>
+    <div class="tx-row"><div class="tx-av">🐱</div><div class="tx-user">anon#2222</div><div class="tx-reason">Штраф за флуд</div><div class="tx-amount" style="color:var(--danger)">−200 ₴</div><div class="tx-time">34 мин назад</div></div>
+    <div class="tx-row"><div class="tx-av">🦌</div><div class="tx-user">anon#9999</div><div class="tx-reason">Розыгрыш — 1 место</div><div class="tx-amount" style="color:var(--brand)">+5 000 ₴</div><div class="tx-time">1ч назад</div></div>
+  </div>
+</section>
+
+<!-- ── BYPASS ─────────────────────────────────────────────── -->
+<section class="bypass-section" id="bypass">
+  <span class="section-tag">Обход блокировок</span>
+  <h2 class="section-title">Discord<br>не открывается?</h2>
+  <div class="bypass-card">
+    <div class="bypass-top">
+      <div>
+        <div class="bypass-h">Zapret —<br>без VPN, навсегда</div>
+        <p class="bypass-desc">Открытый инструмент обхода DPI-блокировок. Работает на уровне сети — не тратит трафик, не меняет IP, не тормозит соединение. Discord, YouTube, Telegram.</p>
+        <div class="bypass-warn">
+          <i class="ti ti-alert-triangle" style="color:var(--warn);font-size:14px;flex-shrink:0;margin-top:1px"></i>
+          <span class="bypass-warn-text">Антивирус может сработать на <strong>WinDivert.sys</strong> — это ложное срабатывание. Добавь папку в исключения или отключи «Обнаружение PUA».</span>
+        </div>
+      </div>
+      <div>
+        <a href="https://github.com/Flowseal/zapret-discord-youtube/releases/latest" target="_blank" class="btn-dl">
+          <i class="ti ti-download" style="font-size:15px"></i>Скачать последний релиз
+        </a>
+        <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" class="btn-gh">
+          <i class="ti ti-brand-github" style="font-size:14px"></i>Исходный код на GitHub
+        </a>
+        <div class="bypass-authors">
+          <div class="bypass-authors-label">Авторы</div>
+          <p>Инструмент: <a href="https://github.com/Flowseal" target="_blank">@Flowseal</a><br>Ядро zapret: <a href="https://github.com/bol-van/zapret" target="_blank">@bol-van</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="bypass-steps">
+      <div class="bypass-step">
+        <div class="step-n">01</div>
+        <div class="step-h">Включи Secure DNS</div>
+        <div class="step-p">Chrome → Настройки → Конфиденциальность → «Безопасный DNS». Выбери любого кроме дефолтного.</div>
+        <code class="step-code">dns.google/dns-query</code>
+      </div>
+      <div class="bypass-step">
+        <div class="step-n">02</div>
+        <div class="step-h">Скачай архив</div>
+        <div class="step-p">Со страницы релизов. ПКМ по архиву → Свойства → галочка «Разблокировать».</div>
+      </div>
+      <div class="bypass-step">
+        <div class="step-n">03</div>
+        <div class="step-h">Распакуй без кириллицы</div>
+        <div class="step-p">Путь не должен содержать кириллицу, пробелы или спецсимволы.</div>
+        <code class="step-code">C:\zapret\</code>
+      </div>
+      <div class="bypass-step">
+        <div class="step-n">04</div>
+        <div class="step-h">Запусти стратегию</div>
+        <div class="step-p">Пробуй <strong style="color:#f0f0f0">general.bat</strong> по одному. Рабочий — ставь на автозапуск.</div>
+        <code class="step-code">service.bat → Install</code>
+      </div>
+      <div class="bypass-step">
+        <div class="step-n">05</div>
+        <div class="step-h">Если войс не работает</div>
+        <div class="step-p">Обнови адреса голосовых серверов Discord через service.bat.</div>
+        <code class="step-code">service.bat → Hosts</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RULES ──────────────────────────────────────────────── -->
+<section class="rules-section" id="rules">
+  <span class="section-tag">Правила</span>
+  <h2 class="section-title" style="margin-bottom:32px">Минимум правил —<br>максимум здравого смысла</h2>
+  <div class="rules-grid">
+    <div class="rules-col">
+      <div class="rules-col-h red"><i class="ti ti-ban"></i>Красные линии — бан без обсуждений</div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">Слив личных данных (докс): ФИО, телефоны, адреса, фото<span class="rule-badge">Бан | Навсегда</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">CSAM и контент с несовершеннолетними в сексуальном контексте<span class="rule-badge">Бан | Навсегда + Discord T&S</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">Реальные угрозы — физические, шантаж, доксинг<span class="rule-badge">Бан | Навсегда</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">Призывы к насилию против людей или групп<span class="rule-badge">Бан | Навсегда</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">Скам, фишинг, кража аккаунтов, обман ради выгоды<span class="rule-badge">Бан | Навсегда</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--danger)"></div><div class="rule-text">Alt-аккаунты для обхода наказаний или фарма валюты<span class="rule-badge">Бан всех аккаунтов | Навсегда</span></div></div>
+    </div>
+    <div class="rules-col">
+      <div class="rules-col-h yellow"><i class="ti ti-alert-triangle"></i>Серая зона — предупреждение → мут → бан</div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">Реклама и коммерческая деятельность без согласования<span class="rule-badge">Варн / Бан-ролью | До 14 дней</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">Флуд, спам, капс, беспричинные массовые упоминания<span class="rule-badge">Замечание / Мут | До 30 мин</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">SoundPad, искусственный шум, намеренные помехи в войсе<span class="rule-badge">Замечание / Войс-мут | До 30 мин</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">Намеренная провокация ради срыва обсуждения<span class="rule-badge">Варн / Мут | До 60 мин</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">Игнорирование решений модерации и обход правил<span class="rule-badge">Бан-ролью | До 7 дней</span></div></div>
+      <div class="rule-row"><div class="rule-dot" style="background:var(--warn)"></div><div class="rule-text">Копирование профилей участников для введения в заблуждение<span class="rule-badge">Варн / Бан-ролью | До 14 дней</span></div></div>
+    </div>
+  </div>
+  <div class="rules-nv">
+    <div class="rules-nv-h">Это НЕ нарушение</div>
+    <div class="rules-tags">
+      <span class="rules-tag">Острые мнения по любым темам</span>
+      <span class="rules-tag">Политика, религия, гендер</span>
+      <span class="rules-tag">Тёмный юмор и мемы</span>
+      <span class="rules-tag">Мат без прямых оскорблений</span>
+      <span class="rules-tag">Несогласие с модерацией</span>
+      <span class="rules-tag">Острые никнеймы</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-section no-border">
+  <div class="cta-card">
+    <div class="cta-left">
+      <h2 class="cta-h">Нашёл<br>своих?</h2>
+      <p class="cta-sub">Нажми кнопку — и ты уже там. Без регистраций, без ожиданий.</p>
+      <a href="https://discord.gg/4ch" class="btn-cta">
+        <i class="ti ti-arrow-right" style="font-size:15px"></i>Вступить в 4ch
+      </a>
+    </div>
+    <div class="cta-logo">
+      <svg width="220" height="220" viewBox="0 0 645 645" fill="none">
+        <path d="M537.862 341.045C658.99 341.045 686.541 510.814 571.63 549.119C561.002 552.662 552.662 561.001 549.119 571.629C510.815 686.541 341.042 658.99 341.042 537.862V410.775C341.042 400.24 353.31 394.468 361.426 401.184L422.566 451.775C441.962 467.824 467.824 441.961 451.775 422.566L401.191 361.43C394.475 353.314 400.248 341.045 410.782 341.045H537.862Z" fill="#0a0a0a"/>
+        <path d="M192.533 422.565C176.485 441.961 202.347 467.823 221.742 451.775L283.311 400.83C291.427 394.115 303.696 399.887 303.696 410.421V537.862C303.696 658.99 133.927 686.541 95.6224 571.629C92.0797 561.001 83.7399 552.662 73.1118 549.119C-41.8 510.814 -14.2485 341.041 106.88 341.041H233.53C244.064 341.041 249.837 353.31 243.121 361.426L192.533 422.565Z" fill="#0a0a0a"/>
+        <path d="M341.042 106.879C341.042 -14.249 510.815 -41.8005 549.119 73.1114C552.662 83.7394 561.001 92.0792 571.63 95.6219C686.541 133.926 658.99 303.695 537.862 303.695H410.422C399.887 303.695 394.115 291.427 400.83 283.311L451.775 221.742C467.823 202.346 441.961 176.484 422.566 192.533L361.426 243.121C353.31 249.836 341.042 244.064 341.042 233.53V106.879Z" fill="#0a0a0a"/>
+        <path d="M95.6219 73.1113C133.926 -41.8004 303.695 -14.249 303.695 106.879V233.883C303.695 244.417 291.427 250.189 283.311 243.474L221.742 192.533C202.346 176.485 176.485 202.346 192.533 221.742L243.481 283.315C250.196 291.431 244.424 303.699 233.89 303.699H106.879C-14.249 303.699 -41.8005 133.926 73.1114 95.6218C83.7394 92.0791 92.0792 83.7393 95.6219 73.1113Z" fill="#0a0a0a"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <a class="footer-logo" href="#">
+      <svg viewBox="0 0 645 645" fill="none"><path d="M537.862 341.045C658.99 341.045 686.541 510.814 571.63 549.119C561.002 552.662 552.662 561.001 549.119 571.629C510.815 686.541 341.042 658.99 341.042 537.862V410.775C341.042 400.24 353.31 394.468 361.426 401.184L422.566 451.775C441.962 467.824 467.824 441.961 451.775 422.566L401.191 361.43C394.475 353.314 400.248 341.045 410.782 341.045H537.862Z" fill="#97BF04"/><path d="M192.533 422.565C176.485 441.961 202.347 467.823 221.742 451.775L283.311 400.83C291.427 394.115 303.696 399.887 303.696 410.421V537.862C303.696 658.99 133.927 686.541 95.6224 571.629C92.0797 561.001 83.7399 552.662 73.1118 549.119C-41.8 510.814 -14.2485 341.041 106.88 341.041H233.53C244.064 341.041 249.837 353.31 243.121 361.426L192.533 422.565Z" fill="#97BF04"/><path d="M341.042 106.879C341.042 -14.249 510.815 -41.8005 549.119 73.1114C552.662 83.7394 561.001 92.0792 571.63 95.6219C686.541 133.926 658.99 303.695 537.862 303.695H410.422C399.887 303.695 394.115 291.427 400.83 283.311L451.775 221.742C467.823 202.346 441.961 176.484 422.566 192.533L361.426 243.121C353.31 249.836 341.042 244.064 341.042 233.53V106.879Z" fill="#97BF04"/><path d="M95.6219 73.1113C133.926 -41.8004 303.695 -14.249 303.695 106.879V233.883C303.695 244.417 291.427 250.189 283.311 243.474L221.742 192.533C202.346 176.485 176.485 202.346 192.533 221.742L243.481 283.315C250.196 291.431 244.424 303.699 233.89 303.699H106.879C-14.249 303.699 -41.8005 133.926 73.1114 95.6218C83.7394 92.0791 92.0792 83.7393 95.6219 73.1113Z" fill="#97BF04"/></svg>
+      <span class="footer-name">4ch™</span>
+    </a>
+    <div class="footer-right">
+      <a href="#bypass">Обход блокировок</a>
+      <a href="#rules">Правила</a>
+      <span>© 2026 — Discord Community</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

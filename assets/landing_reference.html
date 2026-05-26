@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4ch — Discord Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #97BF04;
+    --brand-dim: #6e8e03;
+    --brand-glow: rgba(151,191,4,0.18);
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --text: #f0f0f0;
+    --muted: #666;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .logo-icon {
+    width: 32px; height: 32px;
+  }
+
+  .nav-wordmark {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .btn-join {
+    background: var(--brand);
+    color: #0a0a0a;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-join:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-logo {
+    position: absolute;
+    right: -80px; top: 50%;
+    transform: translateY(-50%);
+    width: 55vw; max-width: 700px;
+    opacity: 0.06;
+    pointer-events: none;
+    filter: grayscale(0);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(52px, 8vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .hero-title .accent {
+    color: var(--brand);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 36px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-actions {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--brand);
+    color: #0a0a0a;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 16px 24px;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+  .hero-stats {
+    margin-top: 80px;
+    display: flex;
+    gap: 48px;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--border);
+    margin: 0 48px;
+    width: calc(100% - 96px);
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 100px 48px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px);
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 64px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .feat-card {
+    background: var(--bg2);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .feat-card:hover { background: var(--bg3); }
+
+  .feat-num {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .feat-icon {
+    width: 36px; height: 36px;
+    margin-bottom: 20px;
+  }
+
+  .feat-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .feat-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* CHANNELS */
+  .channels-section {
+    padding: 0 48px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .ch-item {
+    background: var(--bg2);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: background 0.15s;
+    cursor: default;
+  }
+
+  .ch-item:hover { background: var(--bg3); }
+
+  .ch-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .ch-dot.active { background: var(--brand); }
+
+  .ch-name {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+    flex: 1;
+  }
+
+  .ch-badge {
+    font-size: 11px;
+    background: var(--brand-glow);
+    color: var(--brand);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 20px 0;
+    margin-bottom: 100px;
+    background: var(--bg2);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .marquee-item .sep {
+    color: var(--brand);
+    margin: 0 16px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 0 48px 120px;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-inner {
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 80px 48px;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg-logo {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .footer-logo { width: 20px; height: 20px; }
+
+  .footer-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 8 C50 8 28 8 22 26 C16 44 28 50 28 50 C28 50 16 56 22 74 C28 92 50 92 50 92 C50 92 72 92 78 74 C84 56 72 50 72 50 C72 50 84 44 78 26 C72 8 50 8 Z" fill="#97BF04"/>
+      <path d="M38 42 L50 50 L38 58 M62 42 L50 50 L62 58 M50 34 L50 50 M50 66 L50 50" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-wordmark">4ch™</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">О нас</a></li>
+    <li><a href="#">Каналы</a></li>
+    <li><a href="#">Правила</a></li>
+  </ul>
+  <a href="#" class="btn-join">Вступить</a>
+</nav>
+
+<section class="hero">
+  <svg class="hero-bg-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 8 C50 8 28 8 22 26 C16 44 28 50 28 50 C28 50 16 56 22 74 C28 92 50 92 50 92 C50 92 72 92 78 74 C84 56 72 50 72 50 C72 50 84 44 78 26 C72 8 50 8 Z" fill="#97BF04"/>
+    <path d="M38 42 L50 50 L38 58 M62 42 L50 50 L62 58 M50 34 L50 50 M50 66 L50 50" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <p class="hero-eyebrow">Discord Community</p>
+  <h1 class="hero-title">
+    Свои<br>среди
+    <span class="accent">своих</span>
+  </h1>
+  <p class="hero-sub">
+    Тихое место для тех, кто думает нестандартно. Мемы, обсуждения, анонимность — в духе старого интернета.
+  </p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Присоединиться</a>
+    <a href="#" class="btn-ghost">Узнать больше</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">4.2K</div>
+      <div class="stat-label">Участников</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">18+</div>
+      <div class="stat-label">Тематик</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Онлайн</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Анонимность <span class="sep">✦</span></span>
+    <span class="marquee-item">Свобода слова <span class="sep">✦</span></span>
+    <span class="marquee-item">Мемы <span class="sep">✦</span></span>
+    <span class="marquee-item">Дискуссии <span class="sep">✦</span></span>
+    <span class="marquee-item">Культура <span class="sep">✦</span></span>
+    <span class="marquee-item">Технологии <span class="sep">✦</span></span>
+    <span class="marquee-item">4ch <span class="sep">✦</span></span>
+    <span class="marquee-item">Анонимность <span class="sep">✦</span></span>
+    <span class="marquee-item">Свобода слова <span class="sep">✦</span></span>
+    <span class="marquee-item">Мемы <span class="sep">✦</span></span>
+    <span class="marquee-item">Дискуссии <span class="sep">✦</span></span>
+    <span class="marquee-item">Культура <span class="sep">✦</span></span>
+    <span class="marquee-item">Технологии <span class="sep">✦</span></span>
+    <span class="marquee-item">4ch <span class="sep">✦</span></span>
+  </div>
+</div>
+
+<section class="features">
+  <span class="section-tag">Что внутри</span>
+  <h2 class="section-title">Три кита<br>сервера</h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-num">01</div>
+      <svg class="feat-icon" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" stroke="#97BF04" stroke-width="0.8" opacity="0.4"/>
+        <path d="M10 18 Q14 10 18 18 Q22 26 26 18" stroke="#97BF04" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="feat-title">Свободный треп</div>
+      <div class="feat-desc">Никаких корпоративных правил. Говори что думаешь — в рамках здравого смысла.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">02</div>
+      <svg class="feat-icon" viewBox="0 0 36 36" fill="none">
+        <rect x="6" y="6" width="24" height="24" rx="3" stroke="#97BF04" stroke-width="0.8" opacity="0.4"/>
+        <path d="M12 18 L16 22 L24 14" stroke="#97BF04" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="feat-title">Верификация</div>
+      <div class="feat-desc">Система ролей без лишней бюрократии. Доступ расширяется с активностью.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">03</div>
+      <svg class="feat-icon" viewBox="0 0 36 36" fill="none">
+        <path d="M18 4 L20.5 12 L28 12 L22 17 L24 25 L18 20 L12 25 L14 17 L8 12 L15.5 12 Z" stroke="#97BF04" stroke-width="0.8" stroke-linejoin="round" opacity="0.4"/>
+        <circle cx="18" cy="16" r="4" stroke="#97BF04" stroke-width="1.5"/>
+      </svg>
+      <div class="feat-title">Ивенты</div>
+      <div class="feat-desc">Регулярные войсы, турниры, кино-вечера. Сообщество живёт не только в тексте.</div>
+    </div>
+  </div>
+</section>
+
+<section class="channels-section">
+  <div>
+    <span class="section-tag">Каналы</span>
+    <h2 class="section-title">Найди<br>своё место</h2>
+    <p style="font-size:15px; color:var(--muted); font-weight:300; line-height:1.7; max-width:380px;">
+      Каждый раздел — отдельный мир. От политики до аниме, от кода до изоленты.
+    </p>
+  </div>
+  <div class="channel-list">
+    <div class="ch-item">
+      <div class="ch-dot active"></div>
+      <span class="ch-name"># general</span>
+      <span class="ch-badge">hot</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot active"></div>
+      <span class="ch-name"># мемы</span>
+      <span class="ch-badge">hot</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot"></div>
+      <span class="ch-name"># политика</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot"></div>
+      <span class="ch-name"># технологии</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot active"></div>
+      <span class="ch-name"># аниме</span>
+      <span class="ch-badge">live</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot"></div>
+      <span class="ch-name"># игры</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot"></div>
+      <span class="ch-name"># музыка</span>
+    </div>
+    <div class="ch-item">
+      <div class="ch-dot"></div>
+      <span class="ch-name"># войс-лобби</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <svg class="cta-bg-logo" viewBox="0 0 100 100" fill="none">
+      <path d="M50 8 C50 8 28 8 22 26 C16 44 28 50 28 50 C28 50 16 56 22 74 C28 92 50 92 50 92 C50 92 72 92 78 74 C84 56 72 50 72 50 C72 50 84 44 78 26 C72 8 50 8 Z" fill="#97BF04"/>
+    </svg>
+    <h2 class="cta-title">Готов?</h2>
+    <p class="cta-sub">Нажми кнопку — и ты уже там.</p>
+    <a href="#" class="btn-primary" style="position:relative;">Вступить в 4ch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <svg class="footer-logo" viewBox="0 0 100 100" fill="none">
+      <path d="M50 8 C50 8 28 8 22 26 C16 44 28 50 28 50 C28 50 16 56 22 74 C28 92 50 92 50 92 C50 92 72 92 78 74 C84 56 72 50 72 50 C72 50 84 44 78 26 C72 8 50 8 Z" fill="#97BF04"/>
+      <path d="M38 42 L50 50 L38 58 M62 42 L50 50 L62 58 M50 34 L50 50 M50 66 L50 50" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="footer-name">4ch™</span>
+  </div>
+  <span class="footer-right">© 2026 — Discord Community</span>
+</footer>
+
+</body>
+</html>
