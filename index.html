@@ -554,86 +554,98 @@ footer {
 @media (max-width: 768px) {
   :root { --px: 20px; --py: 56px; }
 
-  /* NAV */
-  .nav-inner { padding: 0 20px; gap: 16px; }
+  /* ── NAV */
+  .nav-inner { padding: 0 var(--px); gap: 12px; }
   .nav-links { display: none; }
 
-  /* HERO */
-  .hero { padding: 96px var(--px) 56px; }
-  .hero-watermark { width: 80vw; right: -15vw; opacity: 0.04; }
-  .hero-sub { font-size: 15px; }
-  .hero-actions { flex-wrap: wrap; gap: 10px; }
-  .hero-stats {
+  /* ── HERO */
+  .hero { padding: 96px var(--px) 56px; align-items: stretch; }
+  .hero-watermark { width: 72vw; right: -10vw; opacity: 0.04; }
+  .hero-sub { font-size: 15px; max-width: 100%; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-primary { text-align: center; }
+  .btn-ghost   { text-align: center; }
+  .hero-stats  {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 28px 0;
     margin-top: 48px;
   }
 
-  /* FEATURES STRIP */
+  /* ── SHARED */
+  .section-title { margin-bottom: 28px; }
+
+  /* ── FEATURES STRIP */
   .strip-grid { grid-template-columns: 1fr; }
-  .strip-div { display: none; }
-  .strip-item { padding: 22px 24px; }
+  .strip-div  { display: none; }
+  .strip-item { padding: 22px 20px; }
 
-  /* LIVE FEED */
+  /* ── LIVE FEED */
   .live-grid { grid-template-columns: 1fr; }
+  .live-col  { padding: 20px; }
 
-  /* CHANNELS */
-  .channels-section { grid-template-columns: 1fr; gap: 36px; }
+  /* ── CHANNELS */
+  .channels-section { grid-template-columns: 1fr; gap: 32px; }
 
-  /* ECONOMY */
-  .eco-grid { grid-template-columns: 1fr 1fr; }
-  .tx-time { display: none; }
-  .eco-card { padding: 22px 18px; }
+  /* ── ECONOMY */
+  .eco-grid  { grid-template-columns: 1fr 1fr; }
+  .eco-card  { padding: 20px 16px; }
+  .eco-num   { font-size: 22px; }
+  .tx-time   { display: none; }
+  .tx-reason { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-  /* BYPASS */
+  /* ── BYPASS */
   .bypass-top {
     grid-template-columns: 1fr;
-    padding: 28px 24px;
-    gap: 28px;
+    padding: 28px 20px;
+    gap: 24px;
   }
-  .bypass-steps { grid-template-columns: 1fr 1fr; }
+  .bypass-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
   .bypass-step {
     border-right: none;
-    border-bottom: 0.5px solid var(--border);
-    padding: 22px 20px 26px;
+    background: var(--bg2);
+    padding: 22px 18px 26px;
   }
-  .bypass-step:last-child { border-bottom: none; }
 
-  /* RULES */
+  /* ── RULES */
   .rules-grid { grid-template-columns: 1fr; }
 
-  /* CTA */
+  /* ── CTA */
   .cta-card { grid-template-columns: 1fr; }
   .cta-logo { display: none; }
-  .cta-left { padding: 40px 32px; }
+  .cta-left { padding: 40px 28px; }
 
-  /* FOOTER */
+  /* ── FOOTER */
   footer { padding: 24px var(--px); }
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
   .footer-right { flex-wrap: wrap; gap: 10px 20px; }
 }
 
 @media (max-width: 480px) {
-  :root { --px: 16px; --py: 48px; }
+  :root { --px: 16px; --py: 44px; }
 
-  /* HERO */
-  .hero-actions { flex-direction: column; align-items: stretch; }
-  .btn-primary, .btn-ghost { text-align: center; justify-content: center; display: block; }
+  /* ── NAV */
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
 
-  /* ECONOMY */
-  .eco-grid { grid-template-columns: 1fr; }
+  /* ── HERO */
+  .hero-title { font-size: clamp(44px, 13vw, 56px); }
+  .stat-num   { font-size: 22px; }
+
+  /* ── ECONOMY */
+  .eco-grid  { grid-template-columns: 1fr; }
   .tx-reason { display: none; }
 
-  /* BYPASS */
+  /* ── BYPASS */
   .bypass-steps { grid-template-columns: 1fr; }
-  .bypass-step { border-bottom: 0.5px solid var(--border); }
+  .bypass-h     { font-size: 20px; }
 
-  /* CTA */
-  .cta-left { padding: 36px 24px; }
-
-  /* NAV */
-  .nav-cta { font-size: 10px; padding: 8px 14px; }
+  /* ── CTA */
+  .cta-h    { font-size: clamp(32px, 9vw, 48px); }
+  .cta-left { padding: 32px 20px; }
 }
 </style>
 </head>
