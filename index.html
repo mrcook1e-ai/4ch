@@ -549,6 +549,87 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --px: 20px; --py: 56px; }
+
+  /* NAV */
+  .nav-inner { padding: 0 20px; gap: 16px; }
+  .nav-links { display: none; }
+
+  /* HERO */
+  .hero { padding: 96px var(--px) 56px; }
+  .hero-watermark { width: 80vw; right: -15vw; opacity: 0.04; }
+  .hero-sub { font-size: 15px; }
+  .hero-actions { flex-wrap: wrap; gap: 10px; }
+  .hero-stats { flex-wrap: wrap; gap: 28px 40px; margin-top: 48px; }
+
+  /* FEATURES STRIP */
+  .strip-grid { grid-template-columns: 1fr; }
+  .strip-div { display: none; }
+  .strip-item { padding: 22px 24px; }
+
+  /* LIVE FEED */
+  .live-grid { grid-template-columns: 1fr; }
+
+  /* CHANNELS */
+  .channels-section { grid-template-columns: 1fr; gap: 36px; }
+
+  /* ECONOMY */
+  .eco-grid { grid-template-columns: 1fr 1fr; }
+  .tx-time { display: none; }
+  .eco-card { padding: 22px 18px; }
+
+  /* BYPASS */
+  .bypass-top {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+    gap: 28px;
+  }
+  .bypass-steps { grid-template-columns: 1fr 1fr; }
+  .bypass-step {
+    border-right: none;
+    border-bottom: 0.5px solid var(--border);
+    padding: 22px 20px 26px;
+  }
+  .bypass-step:last-child { border-bottom: none; }
+
+  /* RULES */
+  .rules-grid { grid-template-columns: 1fr; }
+
+  /* CTA */
+  .cta-card { grid-template-columns: 1fr; }
+  .cta-logo { display: none; }
+  .cta-left { padding: 40px 32px; }
+
+  /* FOOTER */
+  footer { padding: 24px var(--px); }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-right { flex-wrap: wrap; gap: 10px 20px; }
+}
+
+@media (max-width: 480px) {
+  :root { --px: 16px; --py: 48px; }
+
+  /* HERO */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-ghost { text-align: center; justify-content: center; display: block; }
+
+  /* ECONOMY */
+  .eco-grid { grid-template-columns: 1fr; }
+  .tx-reason { display: none; }
+
+  /* BYPASS */
+  .bypass-steps { grid-template-columns: 1fr; }
+  .bypass-step { border-bottom: 0.5px solid var(--border); }
+
+  /* CTA */
+  .cta-left { padding: 36px 24px; }
+
+  /* NAV */
+  .nav-cta { font-size: 10px; padding: 8px 14px; }
+}
 </style>
 </head>
 <body>
